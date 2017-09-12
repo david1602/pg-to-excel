@@ -1,0 +1,29 @@
+{
+  "name": "pg-to-excel",
+  "version": "1.0.0",
+  "description": "Generates an excel file from a postgres query and connection",
+  "main": "index.js",
+  "dependencies": {
+    "pg-promise": "^6.5.2",
+    "xlsx": "^0.11.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/david1602/pg-to-excel.git"
+  },
+  "keywords": [
+    "excel",
+    "postgres",
+    "pg"
+  ],
+  "author": "David Dernovoj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/david1602/pg-to-excel/issues"
+  },
+  "homepage": "https://github.com/david1602/pg-to-excel#readme"
+}
