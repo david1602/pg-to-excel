@@ -69,7 +69,6 @@ const run = async function(qf, q, out, con) {
             'An error occured. Please open an issue if you think this is an error with the pg-to-excel project.',
             e
         );
-        process.exit(1);
     }
 };
 
