@@ -25,29 +25,38 @@ const args = require('yargs')
 
 const {queryfile, query, outputfile, constr} = args;
 
-if (!queryfile && !query) {
-    console.log('You must provide either a query or a queryfile.');
-    process.exit(1);
-}
-
-if (!constr) {
-    console.log('You must provide a connection string');
-    process.exit();
-}
-
-
 const pgp = require('pg-promise')();
 const xlsx = require('xlsx');
 const path = require('path');
 
-const run = async function() {
+
+/**
+ * Exports an Excel file for a gievn query
+ *
+ * @param  {String} qf  Path to the query file
+ * @param  {String} q   Query as string
+ * @param  {String} out Output file path
+ * @param  {String} con description
+ * @return {Promise}
+ */
+const run = async function(qf, q, out, con) {
+    if (!qf && !q) {
+        console.log('You must provide either a query or a queryfile.');
+        process.exit(1);
+    }
+
+    if (!con) {
+        console.log('You must provide a connection string');
+        process.exit();
+    }
+
     try {
         console.log('Connecting to database');
         // Connect to the databse
         const db = pgp(constr);
 
         // Load either the queryfile or take the query
-        const qry = query || new pgp.QueryFile(path.resolve(process.cwd(), queryfile));
+        const qry = q || new pgp.QueryFile(path.resolve(process.cwd(), qf));
 
         // Get the actual results
         const results = await db.query(qry);
@@ -77,10 +86,14 @@ const run = async function() {
         pgp.end();
 
         console.log(`Took ${Date.now() - start} ms`);
+
+        return out;
     } catch (e) {
         console.log('An error occured. Please open an issue if you think this is an error with the pg-to-excel project.', e);
         process.exit(1);
     }
 };
 
-run();
+run(queryfile, query, outputfile, constr);
+
+module.exports = run;
