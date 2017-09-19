@@ -1,6 +1,6 @@
 {
   "name": "pg-to-excel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generates an excel file from a postgres query and connection",
   "main": "index.js",
   "dependencies": {
@@ -22,7 +22,7 @@
     "pg"
   ],
   "author": "David Dernovoj",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/david1602/pg-to-excel/issues"
   },
